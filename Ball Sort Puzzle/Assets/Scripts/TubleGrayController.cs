@@ -6,8 +6,10 @@ public class TubleGrayController : MonoBehaviour
 {
     public static TubleGrayController Intansce;
     public GameObject TubleGray;
-    GameObject[] AllTubleGray = new GameObject[7];
+    // GameObject[] AllTubleGray = new GameObject[10];
 
+    //  List<GameObject[]> arrayList = new List<GameObject[]>();
+ public   List<GameObject> arrayList = new List<GameObject>();
     // int[] a;
     void Start()
        // 3.35
@@ -19,8 +21,15 @@ public class TubleGrayController : MonoBehaviour
         for (int i=0;i<7 ;i++ )
         {
 
-            AllTubleGray[i]= Instantiate(TubleGray, transform.position, Quaternion.identity);
-            x = 3.35f;
+
+//           AllTubleGray[i]= Instantiate(TubleGray, transform.position, Quaternion.identity);
+
+         
+
+            GameObject obj=Instantiate(TubleGray, transform.position, Quaternion.identity);
+            arrayList.Add(obj);
+
+        x = 3.35f;
 
             Poschange.x = transform.position.x + x;
             Poschange.y = transform.position.y;
@@ -38,6 +47,10 @@ public class TubleGrayController : MonoBehaviour
 
         }
     }
+    public List<GameObject> getArraylist()
+    {
+        return arrayList;
+    }    
 
     // Update is called once per frame
     void Update()
