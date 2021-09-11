@@ -5,50 +5,35 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     // Start is called before the first frame update
+    public static BallController Instance;
     public GameObject[] AllBall;
-    
-
+   // public  List<GameObject> Myball = new List<GameObject>();
+    public GameObject[,] Myball1;
+  
     void Start()
     {
-
-    
+        Instance = this;
+       
     }
 
     // Update is called once per frame
     void Update()
-    {
-        ////int a = Random.RandomRange(0, 5);
-        ////Debug.LogError(a);
-        //Queue qt = new Queue();
-        //qt.Enqueue(1);
-        ////qt.Enqueue(1);
-        ////qt.Enqueue(2);
-        ////qt.Enqueue(3);
-        //for(int i=0;i<qt.Count;i++)
-        //{
-        //    Debug.LogError(qt.Dequeue());
-        //}    
-        ////foreach (Object obj in qt)
-        ////{
-        ////    Debug.LogError(obj);
-        ////}
-        ///
+    { 
 
     }
-    List<GameObject> Myball = new List<GameObject>();
+   
     public void setupball()
     {
-        //    Stack stackball = new Stack();
-        //  GameObject[] stackclone = new GameObject[4];
-        Vector3 target;// = TubleGrayController.Intansce.arrayList[0].transform.position;
-
+        Myball1 = new GameObject[5, 4];
+      
+        Vector3 target;
         float y = 0;
-        for (int a=0;a<5 ;a++ )
+        for (int i=0;i<5 ;i++ )
         {
-            target = TubleGrayController.Intansce.arrayList[a].transform.position;
+            target = TubleGrayController.Instance.arrayList[i].transform.position;
             target.y = target.y - 1.65f;
             y = 0;
-            for (int i = 0; i < 4; i++)
+            for (int j = 0; j < 4; j++)
             {
                 int b = Random.RandomRange(0, 5);
 
@@ -57,59 +42,25 @@ public class BallController : MonoBehaviour
                 change.y = target.y + y;
                 change.z = target.z;
                 target = change;
-
-                /*   GameObject obj = Instantiate(AllBall[a], transform.position, Quaternion.identity);        */      /// bug cái này sinh ra tại bên trong cái bình cơ
                 GameObject obj = Instantiate(AllBall[b], target, Quaternion.identity);
-                Myball.Add(obj);
-                //   stackclone[i] = obj;
+                Myball1[i,j] = obj;
                 y = 1.05f;
-                //  stackball.Push(obj);
+              
             }
-            /*     GameObject de =*/ //stackball.Pop();
-
-            //   Destroy(stackclone[2]);
-            //  Destroy(Myball[0]);
+          
         }
 
     }
-    //    public void setupball()
-    //{
-    ////    Stack stackball = new Stack();
-    //  //  GameObject[] stackclone = new GameObject[4];
-       
-    //    float y = 0;
-    //    for (int i = 0; i < 4; i++)
-    //    {
-    //        int a = Random.RandomRange(0, 5);
-           
-    //        Vector3 change = new Vector3();
-    //        change.x = transform.position.x;
-    //        change.y = transform.position.y+y;
-    //        change.z = transform.position.z;
-    //        transform.position = change;
-
-    //        /*   GameObject obj = Instantiate(AllBall[a], transform.position, Quaternion.identity);        */      /// bug cái này sinh ra tại bên trong cái bình cơ
-    //        GameObject obj = Instantiate(AllBall[a], TubleGrayController.Intansce.arrayList[0].transform.position, Quaternion.identity);
-    //        Myball.Add(obj);
-    //     //   stackclone[i] = obj;
-    //        y =1.05f;
-    //      //  stackball.Push(obj);
-    //    }
-    //    /*     GameObject de =*/ //stackball.Pop();
-
-    //    //   Destroy(stackclone[2]);
-    ////  Destroy(Myball[0]);
-    //}
     public void getball()
     {
 
         Vector3 change = new Vector3();
-        change.x = Myball[3].transform.position.x;
-        change.y = Myball[3].transform.position.y + 2f;
-        change.z = Myball[3].transform.position.z;
-        Myball[3].transform.position = change;
+        change.x = Myball1[2, 3].transform.position.x;
+        change.y = Myball1[2, 3].transform.position.y + 2f;
+        change.z = Myball1[2, 3].transform.position.z;
+        Myball1[2,3].transform.position = change;
 
-        Destroy(Myball[3], 3f);
+        Destroy(Myball1[2, 3], 3f);
       //  Debug.LogError(Myball[3].transform.position.x);
     }    
 }

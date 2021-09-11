@@ -4,32 +4,24 @@ using UnityEngine;
 
 public class TubleGrayController : MonoBehaviour
 {
-    public static TubleGrayController Intansce;
+    public static TubleGrayController Instance;
     public GameObject TubleGray;
-    // GameObject[] AllTubleGray = new GameObject[10];
-
-    //  List<GameObject[]> arrayList = new List<GameObject[]>();
- public   List<GameObject> arrayList = new List<GameObject>();
-    // int[] a;
+    public List<GameObject> arrayList = new List<GameObject>();
+ 
     void Start()
-       // 3.35
     {
-        Intansce = this;
+        Instance = this;
         Vector3 Poschange;
         float x = 0;
        
         for (int i=0;i<7 ;i++ )
         {
-
-
-//           AllTubleGray[i]= Instantiate(TubleGray, transform.position, Quaternion.identity);
-
-         
-
-            GameObject obj=Instantiate(TubleGray, transform.position, Quaternion.identity);
+            //           AllTubleGray[i]= Instantiate(TubleGray, transform.position, Quaternion.identity);
+            GameObject obj = Instantiate(TubleGray, transform.position, Quaternion.identity);
+            obj.tag = i.ToString();
             arrayList.Add(obj);
 
-        x = 3.35f;
+            x = 3.35f;
 
             Poschange.x = transform.position.x + x;
             Poschange.y = transform.position.y;
@@ -43,9 +35,7 @@ public class TubleGrayController : MonoBehaviour
                 Poschange.z = 0f;
                 transform.position = Poschange;
             }
-           
-
-        }
+         }
     }
     public List<GameObject> getArraylist()
     {
