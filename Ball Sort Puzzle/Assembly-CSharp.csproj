@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BallController.cs" />
+    <Compile Include="Assets\Scripts\jar.cs" />
     <Compile Include="Assets\Scripts\ObjectMoveController.cs" />
     <Compile Include="Assets\Scripts\TubleGrayController.cs" />
     <Reference Include="Unity.Timeline.Editor">
