@@ -9,12 +9,8 @@ public class BallController : MonoBehaviour
     public GameObject[] AllBall;
    // public  List<GameObject> Myball = new List<GameObject>();
     public GameObject[,] Myball1;
-
+    List<GameObject>[] test = new List<GameObject>[100];
  
-
- ///   List<int> aa = new List<int>[100];
-
-    List<List<GameObject>> Listjar = new List<List<GameObject>>();
     
     void Start()
     {
@@ -25,22 +21,21 @@ public class BallController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
-    { 
-
+    {
+   
     }
    
     public void setupball()
     {
-      //  Myball1 = new GameObject[5, 4];
+ 
       
         Vector3 target;
         float y = 0;
         for (int i=0;i<5 ;i++ )
         {
-            Listjar[i] = new List<GameObject>();
-
+            test[i] = new List<GameObject>();
+            
             target = TubleGrayController.Instance.arrayList[i].transform.position;
             target.y = target.y - 1.65f;
             y = 0;
@@ -54,38 +49,29 @@ public class BallController : MonoBehaviour
                 change.z = target.z;
                 target = change;
                 GameObject obj = Instantiate(AllBall[b], target, Quaternion.identity);
-
-                //Myball1[i,j] = obj;
-
-                Listjar[i].Add(obj);
-
+                test[i].Add(obj);
                 y = 1.05f;
               
             }
           
         }
+        test[5] = new List<GameObject>();
+        test[6] = new List<GameObject>();
 
     }
     public void getball(int numberjar)
     {
-
-        //Vector3 change = new Vector3();
-        //change.x = Myball1[TubleGaray, 3].transform.position.x;
-        //change.y = Myball1[TubleGaray, 3].transform.position.y + 2f;
-        //change.z = Myball1[TubleGaray, 3].transform.position.z;
-        //Myball1[TubleGaray, 3].transform.position = change;
-
-        //Destroy(Myball1[TubleGaray, 3], 3f);
-
-        GameObject a1;
         Vector3 change = new Vector3();
-        change.x = Listjar[numberjar][Listjar[numberjar].Count].transform.position.x;
-        change.y = Listjar[numberjar][Listjar[numberjar].Count].transform.position.y + 2f;
-        change.z = Listjar[numberjar][Listjar[numberjar].Count].transform.position.z;
-        Listjar[numberjar][Listjar[numberjar].Count].transform.position = change;
-
-
-        //  Debug.LogError(Myball[3].transform.position.x);
-
+        change.x = test[numberjar][(test[numberjar].Count - 1)].transform.position.x;
+        change.y = test[numberjar][(test[numberjar].Count - 1)].transform.position.y + 2f;
+        change.z = test[numberjar][(test[numberjar].Count - 1)].transform.position.z;
+        test[numberjar][(test[numberjar].Count - 1)].transform.position = change;
+        Debug.LogError((test[numberjar][(test[numberjar].Count-1)]).transform.position.x);
+       // Destroy(test[numberjar][(test[numberjar].Count - 1)], 1f);
+        test[numberjar].Remove(test[numberjar][(test[numberjar].Count - 1)]);
     }
+    public void setball(int tonumberjar)
+    {
+
+    }    
 }

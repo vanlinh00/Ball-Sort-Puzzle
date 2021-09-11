@@ -21,17 +21,13 @@ public class ObjectMoveController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
             if (hit.collider != null)
             {
-                //if (hit.collider.gameObject.tag.Equals("0"))
-                //{
-                //    BallController.Instance.getball(0);
-
-                //}
-                //BallController.Instance.getball(hit.collider.gameObject.tag);
-
-              int x=  Int32.Parse(hit.collider.gameObject.tag);
-                BallController.Instance.getball(x);
-                Debug.Log(hit.collider.gameObject.name);
-            //    hit.collider.attachedRigidbody.AddForce(Vector2.up);
+                int x=  Int32.Parse(hit.collider.gameObject.tag);
+                Debug.LogError(x);
+             
+                //BallController.Instance.getball(a);
+                //Debug.Log(hit.collider.gameObject.name);
+          
+                //BallController.Instance.setball(a,b);
             }
         }
     }

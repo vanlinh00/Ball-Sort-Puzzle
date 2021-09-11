@@ -16,7 +16,6 @@ public class TubleGrayController : MonoBehaviour
        
         for (int i=0;i<7 ;i++ )
         {
-            //           AllTubleGray[i]= Instantiate(TubleGray, transform.position, Quaternion.identity);
             GameObject obj = Instantiate(TubleGray, transform.position, Quaternion.identity);
             obj.tag = i.ToString();
             arrayList.Add(obj);
