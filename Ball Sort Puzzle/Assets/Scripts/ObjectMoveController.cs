@@ -27,6 +27,7 @@ public class ObjectMoveController : MonoBehaviour
                 int x=  Int32.Parse(hit.collider.gameObject.tag);
                 Debug.LogError(x);
                 checkmove[x] = true;
+
                 for (int i=0;i<7 ;i++ )
                 {
                    if(checkmove[i]==true)
@@ -50,6 +51,7 @@ public class ObjectMoveController : MonoBehaviour
                     BallController.Instance.Moveball(po1, po2);
                     checkmove[po1] = false;
                     checkmove[po2] = false;
+                    checkfullmove = 0;
                 }
             }
         }

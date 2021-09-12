@@ -42,7 +42,6 @@ public class BallController : MonoBehaviour
             for (int j = 0; j < 4; j++)
             {
                 int b = Random.RandomRange(0, 5);
-
                 Vector3 change = new Vector3();
                 change.x = target.x;
                 change.y = target.y + y;
@@ -70,8 +69,32 @@ public class BallController : MonoBehaviour
         // Destroy(test[numberjar][(test[numberjar].Count - 1)], 1f);
     }
     public void Moveball(int numberjar, int tonumberjar)
-    {   
-        test[numberjar][(test[numberjar].Count - 1)].transform.position = TubleGrayController.Instance.arrayList[tonumberjar].transform.position;
+    {
+        float y = 0;
+        Debug.LogError("______________________________-" + test[tonumberjar].Count);
+        if (test[tonumberjar].Count <= 3)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                Debug.LogError("______________________________for__" + test[tonumberjar].Count);
+                if (test[tonumberjar].Count == i)
+                    y = i * 1.05f;
+                 
+                //   y = 1.05f;
+                Vector3 target = TubleGrayController.Instance.arrayList[tonumberjar].transform.position;
+                target.y = target.y - 1.65f;
+                Vector3 change = new Vector3();
+                change.x = target.x;
+                change.y = target.y + y;
+                change.z = target.z;
+                target = change;
+                test[numberjar][(test[numberjar].Count - 1)].transform.position = target;
+               
+
+            }
+
+        }
+        test[tonumberjar].Add(test[numberjar][(test[numberjar].Count - 1)]);
         test[numberjar].Remove(test[numberjar][(test[numberjar].Count - 1)]);
     }
    
