@@ -59,19 +59,20 @@ public class BallController : MonoBehaviour
         test[6] = new List<GameObject>();
 
     }
-    public void getball(int numberjar)
+    public void GetballMove(int numberjar)
     {
         Vector3 change = new Vector3();
         change.x = test[numberjar][(test[numberjar].Count - 1)].transform.position.x;
         change.y = test[numberjar][(test[numberjar].Count - 1)].transform.position.y + 2f;
         change.z = test[numberjar][(test[numberjar].Count - 1)].transform.position.z;
         test[numberjar][(test[numberjar].Count - 1)].transform.position = change;
-        Debug.LogError((test[numberjar][(test[numberjar].Count-1)]).transform.position.x);
-       // Destroy(test[numberjar][(test[numberjar].Count - 1)], 1f);
+        Debug.LogError((test[numberjar][(test[numberjar].Count - 1)]).transform.position.x);
+        // Destroy(test[numberjar][(test[numberjar].Count - 1)], 1f);
+    }
+    public void Moveball(int numberjar, int tonumberjar)
+    {   
+        test[numberjar][(test[numberjar].Count - 1)].transform.position = TubleGrayController.Instance.arrayList[tonumberjar].transform.position;
         test[numberjar].Remove(test[numberjar][(test[numberjar].Count - 1)]);
     }
-    public void setball(int tonumberjar)
-    {
-
-    }    
+   
 }
