@@ -89,8 +89,6 @@ public class BallController : MonoBehaviour
                 change.z = target.z;
                 target = change;
                 test[numberjar][(test[numberjar].Count - 1)].transform.position = target;
-               
-
             }
 
         }

@@ -64,9 +64,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BallController.cs" />
-    <Compile Include="Assets\Scripts\ObjectMoveController.cs" />
-    <Compile Include="Assets\Scripts\TubleGrayController.cs" />
+    <Compile Include="Assets\Scripts\bad code\BallController.cs" />
+    <Compile Include="Assets\Scripts\bad code\ObjectMoveController.cs" />
+    <Compile Include="Assets\Scripts\bad code\TubleGrayController.cs" />
+    <Compile Include="Assets\Scripts\Ball.cs" />
+    <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\Tube.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/canha/Documents/GitHub/Ball-Sort-Puzzle/Ball Sort Puzzle/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
