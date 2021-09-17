@@ -32,6 +32,7 @@ public class BallController : MonoBehaviour
       
         Vector3 target;
         float y = 0;
+       
         for (int i=0;i<5 ;i++ )
         {
             test[i] = new List<GameObject>();
@@ -50,6 +51,7 @@ public class BallController : MonoBehaviour
                 GameObject obj = Instantiate(AllBall[b], target, Quaternion.identity);
                 test[i].Add(obj);
                 y = 1.05f;
+              
               
             }
           

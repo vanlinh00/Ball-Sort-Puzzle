@@ -35,6 +35,7 @@ public class TubleGrayController : MonoBehaviour
                 transform.position = Poschange;
             }
          }
+
     }
     public List<GameObject> getArraylist()
     {
