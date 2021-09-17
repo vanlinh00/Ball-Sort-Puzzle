@@ -5,19 +5,24 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     // Start is called before the first frame update
-  public  GameObject Tuble;
+    public GameObject Tuble;
+    GameObject[] Allball=new GameObject[10];
     void Start()
     {
-        
+    }
+    public void taotube()
+    {
+        GameObject NTuble = Instantiate(Tuble, transform.position, Quaternion.identity);
+        NTuble.GetComponent<Tube>().Create();
+        Allball[1] = NTuble;
+    }
+    public void xoatube()
+    {
+        Allball[1].GetComponent<Tube>().xoa();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        for(int i=0;i<7;i++ )
-        {
-             Instantiate(Tuble, transform.transform.position, Quaternion.identity);
-           
-        }    
+      
     }
 }

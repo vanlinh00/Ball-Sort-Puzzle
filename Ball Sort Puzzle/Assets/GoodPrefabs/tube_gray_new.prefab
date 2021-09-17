@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 9067209418773302497}
   - component: {fileID: 9067209418773302496}
   - component: {fileID: 1158302340241802379}
+  - component: {fileID: -8641631689624383807}
   m_Layer: 0
-  m_Name: tube_gray
+  m_Name: tube_gray_new
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9067209418773302503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.632332, y: -5.6033, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,3 +108,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.51, y: 4.79}
   m_EdgeRadius: 0
+--- !u!114 &-8641631689624383807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067209418773302503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3666f65fab1eaed419ddfb84d9274c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allBall:
+  - {fileID: 8421929910853771152, guid: 7db92ae960551aa4c88090a93b27f02e, type: 3}
+  - {fileID: 8160483391557743473, guid: 18aebca25dd644b4f9ada283ff8b55a9, type: 3}
+  - {fileID: 5571511459080504710, guid: dcb35971962d3bd4c952a585d07f0c5a, type: 3}
+  - {fileID: 8379806104263008525, guid: 66227f78ccaddc84f98491fa6db8206c, type: 3}
+  - {fileID: 88640819247875842, guid: c13a144f52e21ec41bd4ff53ed806a4f, type: 3}
