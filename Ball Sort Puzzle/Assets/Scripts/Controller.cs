@@ -71,32 +71,52 @@ public class Controller : MonoBehaviour
             if (hit.collider != null)
             {
                 int tubeselect = Int32.Parse(hit.collider.gameObject.tag);
-                MoveBall(tubeselect, 6);
+                // MoveBall(tubeselect, 6);
+                checkselect[tubeselect] = true;
+                int[] selectpt = checkselect1();
+                if(selectpt[2]==10)
+                {
+                    Debug.LogError("toi da chon Tube" + selectpt[0]+"va tube"+selectpt[1]);
+                    MoveBall(selectpt[0], selectpt[1]);
+                }    
+
             }
 
         }
     }
-    void checkselect1(int tubeselect)
+   int[] checkselect1()
     {
-        int checkfull=0;
-        int vt1 = -1;
-        int vt2 = -1;
-        for(int i=0;i<checkselect.Length ;i++ )
-        {   
-            if(checkselect[i] ==true)
+        int[] vt = new int[3];
+        vt[0] = -1;
+        vt[1] = -1;
+        vt[2] = -1;
+        int checkfull = 0;
+        for (int i = 0; i < checkselect.Length; i++)
+        {
+            if(checkselect[i])
             {
                 checkfull++;
-                if (checkfull == 1)
-                    vt1 = i;
-                if (checkfull == 2)
+                if(checkfull==1)
                 {
-                    vt2 = i;
-                    break;
-                }
-            }
+                    vt[0] = i;
+                } 
+                else if(checkfull==2)
+                {
+                    vt[1] = i;
+                    vt[2] = 10;
+                }    
+            }    
+          
         }
-
+        return vt;
     }
+    void DeSelectAll()
+    {
+        for(int i=0;i<checkselect.Length ;i++ )
+        {
+            checkselect[i] = false;
+        }    
+    }    
     internal void MoveBall(int ps1, int ps2)
     {
         //  Allball[ps1].GetComponent<Tube>().balls.Peek().color.transform.position = Allball[ps2].GetComponent<Tube>().balls.Peek().color.transform.position;
@@ -145,6 +165,6 @@ public class Controller : MonoBehaviour
           
         }
 
-       
+        DeSelectAll();
     }
 }
