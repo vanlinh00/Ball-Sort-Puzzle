@@ -76,11 +76,19 @@ public class Tube : MonoBehaviour
     public Ball getBall()
     {
         Vector3 change = new Vector3();
-        change.x = balls.Pop().color.transform.position.x;
-        change.y = balls.Pop().color.transform.position.y + 2f;
-        change.z = balls.Pop().color.transform.position.z;
-        balls.Pop().color.transform.position = change;
-        return balls.Pop();
+        change.x = balls.Peek().color.transform.position.x;
+        change.y = balls.Peek().color.transform.position.y + 2f;
+        change.z = balls.Peek().color.transform.position.z;
+        balls.Peek().color.transform.position = change;
+        return balls.Peek();
+    }
+    public void UngetBall()
+    {
+        Vector3 change = new Vector3();
+        change.x = balls.Peek().color.transform.position.x;
+        change.y = balls.Peek().color.transform.position.y-2f;
+        change.z = balls.Peek().color.transform.position.z;
+        balls.Peek().color.transform.position = change;
     }
     public void setBall(Ball newball)
     {
