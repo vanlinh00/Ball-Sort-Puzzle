@@ -64,12 +64,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DOTween_1_2_420\DOTween\Modules\DOTweenModuleAudio.cs" />
+    <Compile Include="Assets\DOTween_1_2_420\DOTween\Modules\DOTweenModulePhysics.cs" />
+    <Compile Include="Assets\DOTween_1_2_420\DOTween\Modules\DOTweenModulePhysics2D.cs" />
+    <Compile Include="Assets\DOTween_1_2_420\DOTween\Modules\DOTweenModuleSprite.cs" />
+    <Compile Include="Assets\DOTween_1_2_420\DOTween\Modules\DOTweenModuleUI.cs" />
+    <Compile Include="Assets\DOTween_1_2_420\DOTween\Modules\DOTweenModuleUnityVersion.cs" />
+    <Compile Include="Assets\DOTween_1_2_420\DOTween\Modules\DOTweenModuleUtils.cs" />
     <Compile Include="Assets\Scripts\bad code\BallController.cs" />
     <Compile Include="Assets\Scripts\bad code\ObjectMoveController.cs" />
     <Compile Include="Assets\Scripts\bad code\TubleGrayController.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
     <Compile Include="Assets\Scripts\Tube.cs" />
+    <None Include="Assets\DOTween_1_2_420\DOTween\readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/canha/Documents/GitHub/Ball-Sort-Puzzle/Ball Sort Puzzle/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -279,6 +287,9 @@
     </Reference>
     <Reference Include="UnityEngine.XRModule">
       <HintPath>D:/2019.2.21f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:/Users/canha/Documents/GitHub/Ball-Sort-Puzzle/Ball Sort Puzzle/Assets/DOTween_1_2_420/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/2019.2.21f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

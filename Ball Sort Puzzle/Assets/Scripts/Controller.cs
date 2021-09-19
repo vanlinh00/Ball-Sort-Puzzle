@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using DG.Tweening;
 public class Controller : MonoBehaviour
 {
     public static Controller Instance;
@@ -9,10 +10,13 @@ public class Controller : MonoBehaviour
     internal GameObject[] AllTube = new GameObject[10];
 
     public int[] random = new int[5];
-    bool[] checkselect;
+    int[] checkselect;
+    int vt1=-1;
+    int vt2 = -2;
+    int check = 0;
     internal void Start()
     {
-        checkselect = new bool[10];
+        checkselect = new int[10];
     }
 
     public void taotube()
@@ -72,13 +76,67 @@ public class Controller : MonoBehaviour
             {
                 int tubeselect = Int32.Parse(hit.collider.gameObject.tag);
                 // MoveBall(tubeselect, 6);
-                checkselect[tubeselect] = true;
-                int[] selectpt = checkselect1();
-                if(selectpt[2]==10)
+                //  checkselect[tubeselect]++;
+                //int[] selectpt = checkselect1();
+
+                ////if(selectpt[2]==10)
+                ////{
+                ////    Debug.LogError("toi da chon Tube" + selectpt[0]+"va tube"+selectpt[1]);
+                ////    MoveBall(selectpt[0], selectpt[1]);
+                ////}    
+
+                //for(int i=0;i<checkselect.Length ;i++ )
+                //{
+
+                //    if(checkselect[i]==2)
+                //    {
+                //        Debug.LogError("check cua i" + checkselect[i]);
+                //        Ungetball(i);
+                //        DeSelectAll();
+                //    }
+                //    if(checkselect[i]==1)
+                //    {
+                //        if (i != vt1)
+                //        {
+                //            Getball(i);
+                //            vt1 = i;
+                //        }
+
+                //    }    
+
+                //}    
+                if (check == 0)
                 {
-                    Debug.LogError("toi da chon Tube" + selectpt[0]+"va tube"+selectpt[1]);
-                    MoveBall(selectpt[0], selectpt[1]);
-                }    
+                    check =1;
+                    vt1 = tubeselect;
+                    Getball(vt1);
+                }
+                else if(check ==1)
+                 {
+                    if (tubeselect == vt1)
+                    {
+                        Ungetball(vt1);
+                        check = 0;
+                    }
+                    else
+                    {
+                        vt2 = tubeselect;
+                        if(checktrucolor(vt1,vt2))
+                         {
+
+                            // MoveBall(vt1, vt2);
+                            Debug.LogError("di chuyen tu" + vt1+"sang" + vt2);
+                            check = 0;
+                        }
+                        else
+                        {
+                            Ungetball(vt1);
+                            Getball(vt2);
+                            vt1 = tubeselect;
+                        }
+
+                    }
+                 }
 
             }
 
@@ -87,26 +145,31 @@ public class Controller : MonoBehaviour
    int[] checkselect1()
     {
         int[] vt = new int[3];
-        vt[0] = -1;
-        vt[1] = -1;
-        vt[2] = -1;
-        int checkfull = 0;
-        for (int i = 0; i < checkselect.Length; i++)
+    //vt[0] = -1;
+    //vt[1] = -1;
+    //vt[2] = -1;
+    //int checkfull = 0;
+    //for (int i = 0; i < checkselect.Length; i++)
+    //{
+    //    if(checkselect[i])
+    //    {
+    //        checkfull++;
+    //        if(checkfull==1)
+    //        {
+    //            vt[0] = i;
+    //        } 
+    //        else if(checkfull==2)
+    //        {
+    //            vt[1] = i;
+    //            vt[2] = 10;
+    //        }    
+    //    }    
+
+    //}
+
+    for(int i=0;i<checkselect.Length ;i++ )
         {
-            if(checkselect[i])
-            {
-                checkfull++;
-                if(checkfull==1)
-                {
-                    vt[0] = i;
-                } 
-                else if(checkfull==2)
-                {
-                    vt[1] = i;
-                    vt[2] = 10;
-                }    
-            }    
-          
+            
         }
         return vt;
     }
@@ -114,9 +177,25 @@ public class Controller : MonoBehaviour
     {
         for(int i=0;i<checkselect.Length ;i++ )
         {
-            checkselect[i] = false;
+            checkselect[i] = 0;
         }    
+    }   
+    bool checktrucolor(int ps1, int  ps2)
+    {
+        if(AllTube[ps2].GetComponent<Tube>().balls.Peek().color.tag.Equals(AllTube[ps1].GetComponent<Tube>().balls.Peek().color.tag))
+        {
+            return true;
+         }
+        return false;
     }    
+    void Getball(int ps)
+    {
+        AllTube[ps].GetComponent<Tube>().GetBallflap();
+    }
+    void Ungetball(int ps)
+    {
+        AllTube[ps].GetComponent<Tube>().UngetBall();
+    }
     internal void MoveBall(int ps1, int ps2)
     {
         //  Allball[ps1].GetComponent<Tube>().balls.Peek().color.transform.position = Allball[ps2].GetComponent<Tube>().balls.Peek().color.transform.position;
@@ -137,8 +216,8 @@ public class Controller : MonoBehaviour
         {
             Debug.LogError(" da them phan tu dau tien vao tube" + ps2);
             AllTube[ps2].GetComponent<Tube>().setBall(AllTube[ps1].GetComponent<Tube>().getBall());
-            AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.position = vitritube2;
-
+           //  AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.position = vitritube2;
+            AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.DOMove(vitritube2, 0.3f);
         }
         else
         {
@@ -160,7 +239,9 @@ public class Controller : MonoBehaviour
                     }
                 }
                 vitritube2 = change;
-                AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.position = vitritube2;
+                //   AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.position = vitritube2;
+                //AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.position = Vector3.Lerp(AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.position, vitritube2, 0.5f);
+                AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.DOMove(vitritube2, 0.3f);
             }
           
         }

@@ -82,6 +82,16 @@ public class Tube : MonoBehaviour
         balls.Peek().color.transform.position = change;
         return balls.Peek();
     }
+    public void GetBallflap()
+    {
+
+        Vector3 change = new Vector3();
+        change.x = balls.Peek().color.transform.position.x;
+        change.y = balls.Peek().color.transform.position.y + 2f;
+        change.z = balls.Peek().color.transform.position.z;
+        balls.Peek().color.transform.position = change;
+    }    
+
     public void UngetBall()
     {
         Vector3 change = new Vector3();
