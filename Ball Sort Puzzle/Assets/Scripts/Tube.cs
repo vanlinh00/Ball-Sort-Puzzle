@@ -11,18 +11,8 @@ public class Tube : MonoBehaviour
     }
 
     public void Create(int deball, int nextdeball)
-    {
-        //balls = new Stack<Ball>(4);
-        //for (int i = 0; i < 4; i++)
-        //{
-
-        //    Ball a = new Ball();
-        //    GameObject objectball = Instantiate(allBall[i], transform.position, Quaternion.identity);
-        //    a.color = objectball;
-        //    balls.Push(a);
-        //}
-      
-        float z = 1.37f;
+    { 
+        float y2 = 1.75f;
         balls = new Stack<Ball>(4);
         float y = 0;
         Vector3 tagert = transform.position;
@@ -37,7 +27,7 @@ public class Tube : MonoBehaviour
                 Vector3 change = new Vector3();
 
                 change.x = tagert.x;
-                change.y = tagert.y + y - z;
+                change.y = tagert.y + y - y2;
                 change.z = tagert.z;
                 tagert = change;
 
@@ -48,7 +38,7 @@ public class Tube : MonoBehaviour
 
                 balls.Push(a);
                 y = 1.05f;
-                z = 0;
+                y2 = 0;
 
             }
         }
@@ -82,12 +72,12 @@ public class Tube : MonoBehaviour
         balls.Peek().color.transform.position = change;
         return balls.Peek();
     }
-    public void GetBallflap()
+    public void GetBall()
     {
 
         Vector3 change = new Vector3();
         change.x = balls.Peek().color.transform.position.x;
-        change.y = balls.Peek().color.transform.position.y + 2f;
+        change.y = 2.68f;
         change.z = balls.Peek().color.transform.position.z;
         balls.Peek().color.transform.position = change;
     }    
@@ -96,7 +86,7 @@ public class Tube : MonoBehaviour
     {
         Vector3 change = new Vector3();
         change.x = balls.Peek().color.transform.position.x;
-        change.y = balls.Peek().color.transform.position.y-2f;
+       // change.y = balls.Peek().color.transform.position.y-2f;
         change.z = balls.Peek().color.transform.position.z;
         balls.Peek().color.transform.position = change;
     }
