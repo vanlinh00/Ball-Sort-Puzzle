@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 public class Tube : MonoBehaviour
 {
     public Stack<Ball> balls;
 
     public GameObject[] allBall;
-
+  
     internal void Start()
     {
     }
@@ -74,21 +75,43 @@ public class Tube : MonoBehaviour
     }
     public void GetBall()
     {
-
         Vector3 change = new Vector3();
         change.x = balls.Peek().color.transform.position.x;
-        change.y = 2.68f;
+       // change.y = 2.68f;
+        change.y = 3.23f;
         change.z = balls.Peek().color.transform.position.z;
-        balls.Peek().color.transform.position = change;
+        balls.Peek().color.transform.DOMove(change, 0.3f);
     }    
 
     public void UngetBall()
     {
         Vector3 change = new Vector3();
-        change.x = balls.Peek().color.transform.position.x;
-       // change.y = balls.Peek().color.transform.position.y-2f;
-        change.z = balls.Peek().color.transform.position.z;
-        balls.Peek().color.transform.position = change;
+        if (balls.Count == 1)
+        {
+            change.x = balls.Peek().color.transform.position.x;
+            change.y = balls.Peek().color.transform.position.y - 1.05f * 5;
+            change.z = balls.Peek().color.transform.position.z;
+        }
+        if (balls.Count == 2)
+        {
+            change.x = balls.Peek().color.transform.position.x;
+            change.y = balls.Peek().color.transform.position.y - 1.05f * 4;
+            change.z = balls.Peek().color.transform.position.z;
+        }
+        if (balls.Count == 3)
+        {
+            change.x = balls.Peek().color.transform.position.x;
+            change.y = balls.Peek().color.transform.position.y - 1.05f * 3;
+            change.z = balls.Peek().color.transform.position.z;
+        }
+        if (balls.Count == 4)
+        {
+            change.x = balls.Peek().color.transform.position.x;
+            change.y = balls.Peek().color.transform.position.y - 1.05f * 2;
+            change.z = balls.Peek().color.transform.position.z;
+        }
+        balls.Peek().color.transform.DOMove(change, 0.3f);
+
     }
     public void setBall(Ball newball)
     {

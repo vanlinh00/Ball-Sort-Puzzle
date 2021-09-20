@@ -7,9 +7,14 @@ public class Controller : MonoBehaviour
     public static Controller Instance;
 
     public GameObject Tuble;
+    public GameObject Btnext;
+    int checkbtnext = 0;
 
     internal GameObject[] AllTube = new GameObject[10];
-
+    public AudioClip addballclip;
+    public AudioClip donetubleclip;
+    public AudioSource audiosoure;
+    
     public int[] random = new int[5];
     int[] checkselect;
     int vt1=-1;
@@ -17,6 +22,7 @@ public class Controller : MonoBehaviour
     int check = 0;
     internal void Start()
     {
+      audiosoure= audiosoure.GetComponent<AudioSource>();
         checkselect = new int[10];
 
         Instance = this;
@@ -30,7 +36,7 @@ public class Controller : MonoBehaviour
             NTuble.GetComponent<Tube>().Create(i, i + 1);
             AllTube[i] = NTuble;
 
-            x = 3.35f;
+            x = 2.35f;
 
             Poschange.x = transform.position.x + x;
             Poschange.y = transform.position.y;
@@ -79,15 +85,24 @@ public class Controller : MonoBehaviour
                 int tubeselect = Int32.Parse(hit.collider.gameObject.tag);  
                 if (check == 0)
                 {
+                    Debug.LogError("get vitri 1 len");
                     check =1;
                     vt1 = tubeselect;
+                    audiosoure.clip = addballclip;
+                    audiosoure.Play();
                     Getball(vt1);
+                  
+                   // addball.
                 }
                 else if(check ==1)
                  {
                     if (tubeselect == vt1)
                     {
+                        Debug.LogError("ungetball");
+                        audiosoure.clip = addballclip;
+                        audiosoure.Play();
                         Ungetball(vt1);
+
                         check = 0;
                     }
                     else
@@ -104,7 +119,9 @@ public class Controller : MonoBehaviour
                             {
                                 check = 0;
                                 Debug.LogError("di chuyen tu" + vt1 + "sang" + vt2);
-                               MoveBall(vt1, vt2);
+                                audiosoure.clip = addballclip;
+                                audiosoure.Play();
+                                MoveBall(vt1, vt2);
 
                             }
                           
@@ -112,9 +129,13 @@ public class Controller : MonoBehaviour
                         }
                         else
                         {
+                            audiosoure.clip = addballclip;
+                            audiosoure.Play();
                             Ungetball(vt1);
                             Getball(vt2);
-                            vt1 = tubeselect;
+                            //vt1 = tubeselect;
+                            vt1 = vt2;
+                            check = 1;
                         }
 
                     }
@@ -146,8 +167,43 @@ public class Controller : MonoBehaviour
     }
     void Ungetball(int ps)
     {
-        AllTube[ps].GetComponent<Tube>().UngetBall();
+       AllTube[ps].GetComponent<Tube>().UngetBall();
+
     }
+    bool checkfullsamecolor(int ps)
+    {
+        string stag = null;
+        foreach (var item in AllTube[ps].GetComponent<Tube>().balls)
+        {
+            stag = stag + item.color.tag;
+            
+        }
+        
+        Debug.LogError(stag);
+        int count = 0;
+        for (int i = 0; i < stag.Length; i++)
+        {
+            Debug.LogError("string tag" + stag[i]);
+
+            if (i == 1 || i == 3 || i == 5 | i == 7)
+            {
+                if (stag[i].Equals(stag[i + 2]))
+                {
+                    count++;
+                    if (count == 3)
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("khong cung tag" + stag[i] + stag[i + 1]);
+                    return false;
+                }
+            }
+        }
+        return false;
+    }    
     internal void MoveBall(int ps1, int ps2)
     {
         Vector3 vitritube2 = AllTube[ps2].transform.position;
@@ -156,7 +212,8 @@ public class Controller : MonoBehaviour
         change1.y = vitritube2.y - 1.75f;
         change1.z = vitritube2.z;
         vitritube2 = change1;
-     //   1.75
+
+        //   1.75
         // y=-0.27
         //-2.02
         if (AllTube[ps2].GetComponent<Tube>().balls.Count == 0)
@@ -187,6 +244,23 @@ public class Controller : MonoBehaviour
                 }
                 vitritube2 = change;
                 AllTube[ps1].GetComponent<Tube>().balls.Pop().color.transform.DOMove(vitritube2, 0.3f);
+                if(AllTube[ps2].GetComponent<Tube>().balls.Count==4)
+                {
+                    if (checkfullsamecolor(ps2))
+                    {
+                      
+                        audiosoure.clip = donetubleclip;
+                        audiosoure.Play();
+                        checkbtnext++;
+                        if (checkbtnext == 5)
+                        {
+                            Btnext.SetActive(true);
+                        }
+
+
+                    }
+
+                }
             }
           
         }

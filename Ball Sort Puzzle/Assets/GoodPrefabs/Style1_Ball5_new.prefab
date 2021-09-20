@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8164112790048929511}
   m_Layer: 0
   m_Name: Style1_Ball5_new
-  m_TagString: ball5
+  m_TagString: -5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
