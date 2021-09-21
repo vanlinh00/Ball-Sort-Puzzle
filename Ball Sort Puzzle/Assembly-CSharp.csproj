@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\bad code\TubleGrayController.cs" />
     <Compile Include="Assets\Scripts\Ball.cs" />
     <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\Tube.cs" />
     <None Include="Assets\DOTween_1_2_420\DOTween\readme.txt" />
     <Reference Include="Unity.Timeline.Editor">

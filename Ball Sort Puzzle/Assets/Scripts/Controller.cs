@@ -55,7 +55,7 @@ public class Controller : MonoBehaviour
 
     public void taotube()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
     }
 
@@ -248,12 +248,13 @@ public class Controller : MonoBehaviour
                 {
                     if (checkfullsamecolor(ps2))
                     {
-                      
+                        GameController.Instance.AddCoin();
                         audiosoure.clip = donetubleclip;
                         audiosoure.Play();
                         checkbtnext++;
                         if (checkbtnext == 5)
                         {
+                            Debug.LogError("check next done level");
                             Btnext.SetActive(true);
                         }
 
